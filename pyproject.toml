@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "django-nested-menu"
+version = "0.1.0"
+description = ""
+authors = ["Serg Nikolaev <s.nikolaev@nklv.su>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_nested_menu"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
