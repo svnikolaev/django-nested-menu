@@ -61,31 +61,43 @@ PAGES_STRUCTURE = {
 
 
 def create_pages_from_structure(
-    structure: Dict[str, Dict], parent: Optional[Page] = None
+    structure: Dict[str, Dict[str, str]],
+    parent: Optional[Page]=None,
+    parent_slug: str=''
 ) -> None:
-    """Рекурсивно создает страницы на основе вложенной структуры.
+    """    Рекурсивно создает страницы на основе вложенной структуры.
 
     :param structure: словарь с данными страниц
     :param parent: родительская страница для текущей структуры
+    :param parent_slug: slug родительской страницы
     """
     for title, page_data in structure.items():
+        # Объединяет slug родителя и текущей страницы, если родитель
+        # существует, иначе использует slug текущей страницы
+        slug = (
+            parent_slug + '/' + page_data['slug']
+            if parent_slug
+            else page_data['slug']
+        )
         # Попытаться получить страницу или создать, если ее не существует
         page, created = Page.objects.get_or_create(
             title=title,
             defaults={
                 'content': page_data['content'],
                 'parent': parent,
-                'slug': page_data['slug']
+                'slug': slug
             }
         )
         # Если страница уже существует, обновить ее данные
         if not created:
             page.content = page_data['content']
             page.parent = parent
-            page.slug = page_data['slug']
+            page.slug = slug
             page.save()
         # Рекурсивно создать дочерние страницы
-        create_pages_from_structure(page_data['children'], parent=page)
+        create_pages_from_structure(
+            page_data['children'], parent=page, parent_slug=slug
+        )
 
 
 class Command(BaseCommand):
