@@ -5,7 +5,7 @@ description = ""
 authors = ["Serg Nikolaev <s.nikolaev@nklv.su>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "django_nested_menu"}]
+
 
 [tool.poetry.dependencies]
 python = "^3.11"

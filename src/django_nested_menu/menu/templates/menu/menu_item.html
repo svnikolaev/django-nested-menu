@@ -1,0 +1,16 @@
+<li>
+    {% if item.children %}
+        <details {% if item.open %}open{% endif %}>
+            <summary>
+                <a href="{{ item.url }}">{{ item.title }}</a>
+            </summary>
+            <ul>
+                {% for child in item.children %}
+                    {% include "menu/menu_item.html" with item=child %}
+                {% endfor %}
+            </ul>
+        </details>
+    {% else %}
+        <a href="{{ item.url }}">{{ item.title }}</a>
+    {% endif %}
+</li>

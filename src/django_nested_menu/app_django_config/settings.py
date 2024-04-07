@@ -26,15 +26,17 @@ sys.path.insert(1, str(PROJECT_ROOT_DIR))
 
 def load_envs_from_file(env_file):
     # Проверка на существование файла
-    if env_file.exists():
+    try:
         # Чтение файла .env и установка переменных окружения
         with env_file.open() as f:
             for line in f:
                 if line.strip():
                     key, value = line.strip().split('=', 1)
                     os.environ[key] = value
-    else:
-        print(f"File {env_file} not found")
+    except (FileExistsError, FileNotFoundError) as e:
+        print(f"Error: {e}")
+        print(f"Env file {env_file} not found")
+        sys.exit(1)
 
 
 load_envs_from_file(env_file=PROJECT_ROOT_DIR.joinpath('.env'))

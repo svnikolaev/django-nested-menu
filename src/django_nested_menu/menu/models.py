@@ -10,3 +10,6 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.title
+
+    def has_children(self):
+        return self.menuitem_set.exists()

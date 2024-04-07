@@ -10,30 +10,51 @@ PAGES_STRUCTURE = {
         'children': {
             'About': {
                 'slug': 'about',
-                'content': 'This is the about page.',
+                'content': 'This is the About page.',
                 'children': {}
             },
             'Contact': {
                 'slug': 'contact',
-                'content': 'This is the contact page.',
+                'content': 'This is the Contact page.',
                 'children': {}
             },
             'Services': {
                 'slug': 'services',
-                'content': 'This is the services page.',
+                'content': 'This is the Services page.',
                 'children': {
                     'Service 1': {
                         'slug': 'service-1',
-                        'content': 'This is the page for service 1.',
+                        'content': 'This is the page for Service 1.',
                         'children': {}
                     },
                     'Service 2': {
                         'slug': 'service-2',
-                        'content': 'This is the page for service 2.',
+                        'content': 'This is the page for Service 2.',
+                        'children': {}
+                    },
+                    'Service 3': {
+                        'slug': 'service-3',
+                        'content': 'This is the page for Service 3.',
+                        'children': {}
+                    },
+                }
+            },
+            'Blog': {
+                'slug': 'blog',
+                'content': 'This is the Blog page.',
+                'children': {
+                    'Blog Post 1': {
+                        'slug': 'blog-post-1',
+                        'content': 'This is the page for Blog Post 1.',
+                        'children': {}
+                    },
+                    'Blog Post 2': {
+                        'slug': 'blog-post-2',
+                        'content': 'This is the page for Blog Post 2.',
                         'children': {}
                     }
                 }
-            }
+            },
         }
     },
     'Products': {
@@ -54,7 +75,17 @@ PAGES_STRUCTURE = {
                 'slug': 'product-3',
                 'content': 'This is the page for product 3.',
                 'children': {}
-            }
+            },
+            'Product 4': {
+                'slug': 'product-4',
+                'content': 'This is the page for product 4.',
+                'children': {}
+            },
+            'Product 5': {
+                'slug': 'product-5',
+                'content': 'This is the page for product 5.',
+                'children': {}
+            },
         }
     }
 }
