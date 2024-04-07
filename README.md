@@ -16,6 +16,7 @@
 
 ```shell
 python .\src\django_nested_menu\manage.py migrate
+python .\src\django_nested_menu\manage.py generate_pages
 ```
 
 ### Запуск веб-сервера django
