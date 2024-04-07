@@ -62,22 +62,23 @@ PAGES_STRUCTURE = {
 
 def create_pages_from_structure(
     structure: Dict[str, Dict[str, str]],
-    parent: Optional[Page]=None,
-    parent_slug: str=''
+    parent: Optional[Page] = None,
+    parent_path: str = ''
 ) -> None:
-    """    Рекурсивно создает страницы на основе вложенной структуры.
+    """Рекурсивно создает страницы на основе вложенной структуры.
 
     :param structure: словарь с данными страниц
     :param parent: родительская страница для текущей структуры
-    :param parent_slug: slug родительской страницы
+    :param parent_path: путь родительской страницы
     """
     for title, page_data in structure.items():
-        # Объединяет slug родителя и текущей страницы, если родитель
+        # Объединяет путь родителя и slug текущей страницы, если родитель
         # существует, иначе использует slug текущей страницы
-        slug = (
-            parent_slug + '/' + page_data['slug']
-            if parent_slug
-            else page_data['slug']
+        slug = page_data['slug']
+        path = (
+            parent_path + '/' + slug
+            if parent_path
+            else slug
         )
         # Попытаться получить страницу или создать, если ее не существует
         page, created = Page.objects.get_or_create(
@@ -85,18 +86,20 @@ def create_pages_from_structure(
             defaults={
                 'content': page_data['content'],
                 'parent': parent,
-                'slug': slug
+                'slug': slug,
+                'path': path
             }
         )
-        # Если страница уже существует, обновить ее данные
+        # Если страница уже существует, обновляем ее данные
         if not created:
             page.content = page_data['content']
             page.parent = parent
             page.slug = slug
+            page.path = path
             page.save()
-        # Рекурсивно создать дочерние страницы
+        # Рекурсивно создаём дочерние страницы
         create_pages_from_structure(
-            page_data['children'], parent=page, parent_slug=slug
+            page_data['children'], parent=page, parent_path=path
         )
 
 
