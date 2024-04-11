@@ -25,7 +25,21 @@
 
 При выполнении задания из библиотек следует использовать только Django и стандартную библиотеку Python.
 
-## Запуск
+## Автоматизированный запуск
+
+### Зафиксировать зависимостри в формате requirements.txt
+
+```shell
+poetry export -f requirements.txt --output requirements.txt
+```
+
+### Запустить контейнер
+
+```shell
+docker compose up
+```
+
+## Ручной запуск
 
 ### Перед запуском
 
@@ -41,22 +55,14 @@ python src/django_nested_menu/manage.py generate_pages
 python src/django_nested_menu/manage.py generate_menu
 ```
 
-### Запуск веб-сервера django
-
-```shell
-python src/django_nested_menu/manage.py runserver
-```
-
 ### Установка пароля администратора
 
 ```shell
 python src/django_nested_menu/manage.py createsuperuser
 ```
 
-### Зафиксировать зависимостри в формате requirements.txt
-
-Зависимости в формат `requirements.txt` экспортируются с помощью команды `poetry export`:
+### Запуск веб-сервера django
 
 ```shell
-poetry export -o requirements.txt
+python src/django_nested_menu/manage.py runserver
 ```
