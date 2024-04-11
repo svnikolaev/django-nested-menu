@@ -39,6 +39,11 @@ poetry export -f requirements.txt --output requirements.txt
 docker compose up
 ```
 
+### Доступ адмнинистратора
+
+**логин**: `admin`
+**пароль**: `admin`
+
 ## Ручной запуск
 
 ### Перед запуском
