@@ -1,3 +1,14 @@
+from django.urls import NoReverseMatch, reverse
+
+
+def get_full_url(url):
+    try:
+        print(f"{reverse(url)=}")
+        return reverse(url)
+    except NoReverseMatch:
+        return url
+
+
 def make_hierarchy(data: list[dict]) -> list[dict]:
     """Преобразует список словарей в иерархическую структуру."""
     # Создает словарь, где ключами будут id элементов, а значениями - сами
@@ -54,6 +65,10 @@ def enrich_with_open_attr(tree: list[dict], current_url: str) -> list[dict]:
     def initialize_item(item):
         # Устанавливает 'open' в False для всех элементов
         item.update(open=False)
+        print(get_full_url(item.get("url")))
+        item.update({
+            "url": get_full_url(item.get("url")) or ""
+        })
         # Заполняет словарь id_to_item
         id_to_item.update({item['id']: item})
 

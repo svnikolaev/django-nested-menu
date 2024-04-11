@@ -7,7 +7,7 @@ MENU_STRUCTURE = [
         'menu': [
             {
                 'title': 'Home',
-                'url': 'home',
+                'url': 'pages:home',
                 'children': [
                     {
                         'title': 'About',
