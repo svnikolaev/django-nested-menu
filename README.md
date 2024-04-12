@@ -25,28 +25,34 @@
 
 При выполнении задания из библиотек следует использовать только Django и стандартную библиотеку Python.
 
-## Автоматизированный запуск
+## Запуск сервиса
 
-### Зафиксировать зависимостри в формате requirements.txt
+Перед запуском сервиса в корне проекта нужно создать файл `.env` по аналогии с файлом `.env.example`.
+
+### Автоматизированный запуск
+
+#### Зафиксировать зависимостри в формате requirements.txt
 
 ```shell
 poetry export -f requirements.txt --output requirements.txt
 ```
 
-### Запустить контейнер
+#### Запустить контейнер
 
 ```shell
 docker compose up
 ```
 
-### Доступ адмнинистратора
+#### Доступ адмнинистратора
 
 **логин**: `admin`
 **пароль**: `admin`
 
-## Ручной запуск
+### Ручной запуск
 
-### Перед запуском
+#### Подготовка перед запуском
+
+Перед запуском нужно выполнить следующие команды:
 
 ```shell
 python src/django_nested_menu/manage.py migrate
@@ -60,13 +66,13 @@ python src/django_nested_menu/manage.py generate_pages
 python src/django_nested_menu/manage.py generate_menu
 ```
 
-### Установка пароля администратора
+#### Установка пароля администратора
 
 ```shell
 python src/django_nested_menu/manage.py createsuperuser
 ```
 
-### Запуск веб-сервера django
+#### Запуск веб-сервера django
 
 ```shell
 python src/django_nested_menu/manage.py runserver
